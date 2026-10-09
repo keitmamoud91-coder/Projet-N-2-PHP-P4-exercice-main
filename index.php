@@ -1,6 +1,8 @@
 <?php
-    require 'header.php';
-    require 'oeuvres.php';
+    include 'header.php';
+    include 'bdd.php';
+    $bdd = connexion();
+    $oeuvres = $bdd->query('SELECT * FROM oeuvres')
 ?>
 <div id="liste-oeuvres">
     <?php foreach($oeuvres as $oeuvre): ?>
