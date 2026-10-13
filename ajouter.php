@@ -20,10 +20,11 @@ unset($_SESSION['erreur'], $_SESSION['old']);
 <?php if(!empty($erreur['artiste'])): ?>
     <p class="erreur"><?= $erreur['artiste'] ?></p>
 <?php endif; ?>
-    </div
+    </div>
     <div class="champ-formulaire">
         <label for="image">URL de l'image</label>
         <input type="url" name="image" id="image" value="<?= $old['image'] ?? '' ?>">
+    </div>
 <?php if (!empty($erreur['image'])): ?>
     <p class="erreur"><?= $erreur['image'] ?></p>
 <?php endif; ?>
