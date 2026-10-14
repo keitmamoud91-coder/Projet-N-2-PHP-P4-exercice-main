@@ -1,10 +1,12 @@
 <?php
     include 'header.php';
     include 'bdd.php';
+
     $bdd = connexion();
     $table = $bdd->query('SELECT * FROM oeuvres');
     $oeuvres = $table->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <div id="liste-oeuvres">
     <?php foreach($oeuvres as $oeuvre): ?>
         <article class="oeuvre">
