@@ -1,18 +1,17 @@
 <?php
     include 'header.php';
     include 'bdd.php';
+
     $bdd = connexion();
     $requete = $bdd->prepare('SELECT * FROM oeuvres WHERE id = ?');
     $id = $_GET['id'];
     $requete->execute([$id]);
     $oeuvre = $requete->fetch(PDO::FETCH_ASSOC);
 
-    // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
     if(empty([$id])) {
        header('Location: index.php');
     }
 
-    // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
     if(is_null($oeuvre)) {
         header('Location: index.php');
     }
@@ -21,6 +20,7 @@
     <div id="img-oeuvre">
         <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['titre'] ?>">
     </div>
+
     <div id="contenu-oeuvre">
         <h1><?= $oeuvre['titre'] ?></h1>
         <p class="description"><?= $oeuvre['artiste'] ?></p>
