@@ -114,6 +114,7 @@ form {
     margin-bottom: 25px;
 }
 
+
 form input, form textarea {
     padding: 7px;
 }
@@ -167,4 +168,8 @@ input[type="submit"] {
         flex-direction: column;
         gap: 0;
     }
+}
+
+.erreur {
+    color: red;
 }
