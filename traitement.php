@@ -3,7 +3,6 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 
-    // Vérifications
     if(empty($_POST['titre'])) {
         $erreur['titre'] = "Veuillez remplir le champ titre.";
     }
@@ -20,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $erreur['image'] = "Veuillez entrer une URL valide.";
     }
 
-    // S'il y a des erreurs → stocker + redirection
     if (!empty($erreur)) {
         $_SESSION['erreur'] = $erreur;
         $_SESSION['old'] = $_POST;
@@ -28,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         exit;
     }
 
-  else {
+else { 
     $titre = htmlspecialchars($_POST['titre']);
     $description = htmlspecialchars($_POST['description']);
     $artiste = htmlspecialchars($_POST['artiste']);
@@ -36,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
    }
 ?>
 
-// Ajout d'une nouvelle oeuvre dans la base de données
 <?php
-include 'bdd.php';
-$bdd = connexion();
-$requete = $bdd->prepare('INSERT INTO oeuvres (titre, description, artiste, image) VALUES (?, ?, ?, ?)');
-$requete->execute([$titre, $description, $artiste, $image]);
-header('Location: oeuvre.php?id=' . $bdd->lastInsertId());
+    include 'bdd.php';
+    $bdd = connexion();
+    
+    $requete = $bdd->prepare('INSERT INTO oeuvres (titre, description, artiste, image) VALUES (?, ?, ?, ?)');
+    $requete->execute([$titre, $description, $artiste, $image]);
+    header('Location: oeuvre.php?id=' . $bdd->lastInsertId());
 ?>
